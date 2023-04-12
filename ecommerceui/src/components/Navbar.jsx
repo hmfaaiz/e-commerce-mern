@@ -8,10 +8,10 @@ import { FiShoppingCart } from 'react-icons/fi';
 
 const Container = styled.div`
     height:60px;
-    background-color:green;
+    
     `;
 const Wrapper = styled.div`
-    background-color:blue;
+    /* background-color:blue; */
     
     padding:10px 20px;
     display:flex;
@@ -20,21 +20,26 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
     flex:1;
-    background-color:red;
+   
     display:flex;
     align-items:center
 `;
 
 const Right = styled.div`
     flex:1;
-    background-color:yellowgreen`;
+   
+    display:flex;
+    justify-content:flex-end;
+    align-items:center`;
+
+
 const Center = styled.div`
     flex:1;
-    background-color:green;
+    
     text-align:center`;
 
 const SpanContainer = styled.span`
-  background-color:yellowgreen;
+ 
   
 `;
 
@@ -48,11 +53,19 @@ padding:5px;
 cursor:pointer`;
 
 const Input = styled.input`
-background-color:yellow;
+
 border:none`;
 
 const Logo = styled.h1`
   font-weight: bold`;
+
+
+const MenuItem=styled.div`
+  font-size:20px;
+  margin-left:20px;
+
+`
+
 
 
 const Navbar = () => {
@@ -65,7 +78,7 @@ const Navbar = () => {
           </SpanContainer>
           <SearchContainer>
             <Input />
-            <FaSearch/>
+            <FaSearch color='gray' size={18}/>
 
           </SearchContainer>
 
@@ -73,7 +86,14 @@ const Navbar = () => {
 
 
         <Center><Logo>FaaizEcom</Logo></Center>
-        <Right>Lorem ipsum dolor sit <FiShoppingCart/></Right>
+        <Right>
+        <MenuItem>Register</MenuItem>
+        <MenuItem>Sign in</MenuItem>
+       
+        <MenuItem><FiShoppingCart size={25}/></MenuItem>
+
+        </Right>
+        
       </Wrapper>
 
     </Container>
