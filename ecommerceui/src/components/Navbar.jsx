@@ -7,13 +7,12 @@ import { FiShoppingCart } from 'react-icons/fi';
 
 
 const Container = styled.div`
-    height:60px;
+    height:50px;
     
     `;
 const Wrapper = styled.div`
-    /* background-color:blue; */
     
-    padding:10px 20px;
+    padding:5px 20px;
     display:flex;
     justify-content:space-between;
      `;
@@ -74,7 +73,7 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <SpanContainer>Lor
+          <SpanContainer>Search
           </SpanContainer>
           <SearchContainer>
             <Input />
