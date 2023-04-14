@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 const Container=styled.div`
-    background-color:#008e6a;
+    background-color:rgb(0, 142, 106);
     height:35px;
     font-size:20px;
     justify-content:center;
