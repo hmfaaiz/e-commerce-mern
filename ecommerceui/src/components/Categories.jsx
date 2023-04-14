@@ -2,6 +2,8 @@ import React from 'react'
 import styled from "styled-components"
 import CategoriesItem from './CategoriesItem';
 import { CategoriesData } from '../data';
+
+
 const Container=styled.div`
     /* margin-top:20px; */
  
