@@ -16,14 +16,14 @@ const Title=styled.h2`
     
     `;
 const Wrapper=styled.div`
-    width:45%;
+    width:20%;
     background-color:white;
     padding:20px  ;
 
     `;
 const Form=styled.form`
     display:flex;
-    flex-wrap:wrap;
+    flex-direction:column;
 
     `;
 const Input=styled.input`
@@ -33,13 +33,7 @@ const Input=styled.input`
 
 
     `;
-const Agreement=styled.p`
-    font-size:10px;
-    margin:10px;
 
-
-
-    `;
 const Button=styled.button`
     padding:10px 15px;
     border:none;
@@ -52,29 +46,35 @@ const Button=styled.button`
         background-color:rgb(2, 192, 144);
         color:white;
     }
-    
+
     `;
 
+const Link=styled.a`
+    text-decoration:underline ;
+    margin:5px 0px 0px 10px;
+    cursor: pointer;
+    font-size:10px;
+    color:#02ab70;
 
-function Register() {
+         `;
+
+
+function Login() {
   return (
     <Container>
         <Wrapper>
-            <Title>Create An Account</Title>
+            <Title>Sign In</Title>
             <Form>
-                <Input placeholder="first name"></Input>
-                <Input placeholder="last name"></Input>
-                <Input placeholder="email"></Input>
+                
                 <Input placeholder="username"></Input>
                 <Input placeholder="password"></Input>
-                <Input placeholder="confirm password"></Input>
-                <Agreement>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                     Quo non repudiandae veniam eligendi vel, illum necessitatibus
-                      possimus velit ducimus mollitia numquam explicabo sint aperiam
-                       porro dolor harum autem amet quas!</Agreement>
+             
+                <Button>Login</Button>
 
-                <Button>Create account</Button>
+                <Link>Forget Password?</Link>
+            <Link>Register</Link>
             </Form>
+            
 
         </Wrapper>
 
@@ -83,4 +83,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Login
