@@ -7,9 +7,9 @@ import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 const App=()=> {
   // return  <Home/>;
-  // return  <ProductList/>;
+  return  <ProductList/>;
   // return  <Product/>;
-  return  <Register/>;
+  // return  <Register/>;
   // return  <Login/>;
   // return  <Cart/>;
 };
