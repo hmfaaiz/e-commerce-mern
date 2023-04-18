@@ -9,19 +9,21 @@ import p1 from '../images/p1.png'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 
-
+import { mobile } from '../responsive'
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
     display:flex;
     padding:50px;
+    ${mobile({padding:'5px',flexDirection:'column'})};
     `;
 
 const ImageContainer = styled.div`
 
     flex:1;
     padding:0px 50px;
+    ${mobile({padding:'15px',flexDirection:'column'})};
     `;
 
 
@@ -37,6 +39,7 @@ const Image = styled.img`
 const InfoContainer = styled.div`
     flex:1;
     padding:20px;
+    ${mobile({padding:'10px'})};
     
     `;
 
@@ -56,7 +59,9 @@ const Price = styled.span`
 const FilterContainer = styled.div`
     display:flex;
     width:50%;
-    justify-content:space-between;`;
+    justify-content:space-between;
+    ${mobile({width:'100%'})};
+    `;
 
 
 
@@ -101,6 +106,7 @@ const AddContainer = styled.div`
     
     width:50%;
     margin-top:40px;
+    ${mobile({width:'100%'})};
 
     `;
 const AmountContainer = styled.div`
