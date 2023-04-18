@@ -5,7 +5,7 @@ import { VscTriangleRight } from 'react-icons/vsc';
 import { useState } from 'react';
 
 import { SliderItems } from '../data';
-
+import { mobile } from '../responsive'
 
 const Container = styled.div`
     height:100vh;
@@ -15,6 +15,7 @@ const Container = styled.div`
     position: relative;
     display:flex;
     overflow:hidden;
+    ${mobile({display:'none' })};
    
     
 
