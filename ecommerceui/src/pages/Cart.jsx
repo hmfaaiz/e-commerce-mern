@@ -8,7 +8,7 @@ import p5 from '../images/p5.png';
 
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
-
+import { mobile } from '../responsive'
 
 const Container = styled.div`
    
@@ -17,6 +17,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
     padding:20px;
+    ${mobile({padding:'5px'})};
    
     `;
 
@@ -46,11 +47,13 @@ const TopBotton = styled.button`
         background-color:${(props) => props.type === 'filled' ? 'rgb(149, 149, 149)' : 'rgb(2, 192, 144)'};
         
         color:white;
-    }
+    };
+    ${mobile({flexDirection:'column'})};
 
     `;
 
-const TopTexts = styled.div``;
+const TopTexts = styled.div`
+    ${mobile({display:'none'})}; `;
 
 const TopText = styled.span`
     text-decoration:underline;
@@ -62,7 +65,8 @@ const TopText = styled.span`
 const Bottom = styled.div`
     display:flex;
     justify-content:space-between;
-    padding:10px
+    padding:10px;
+    ${mobile({flexDirection:'column'})};
    
     `;
 
@@ -78,6 +82,7 @@ const Info = styled.div`
 const Product = styled.div`
     display:flex;
     justify-content:space-between;
+    ${mobile({flexDirection:'column'})};
 
 
     `;
@@ -146,7 +151,9 @@ const AmountContainer = styled.div`
     display:flex;
     cursor: pointer;
     align-items:center;
-    margin-bottom:10px;`;
+    margin-bottom:10px;
+    `;
+ 
 
 const Amount = styled.span`
     width:32px;
@@ -156,7 +163,8 @@ const Amount = styled.span`
     align-items:center;
     display:flex;
     justify-content:center;
-    margin:0px 8px;
+    margin:0px 13px;
+    ${mobile({margin:'0px 20px'})};
     
 `;
 
