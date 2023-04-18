@@ -8,13 +8,20 @@ import { BsFillTelephoneFill } from "react-icons/bs"
 import { MdEmail } from "react-icons/md"
 import payment from '../images/payment.png';
 
+import { mobile } from '../responsive'
+
 const Container = styled.div`
     display:flex;
-    padding:20px;
+    /* padding:20px; */
+    padding:0px; 
+    ${mobile({ flexDirection:'column'})};
     `;
 
 const Left = styled.div`
-    flex:1`;
+    flex:1;
+    padding:20px;
+   
+`;
 
 const Logo = styled.h1`
     font-size:30px;
@@ -45,7 +52,9 @@ const Icon = styled.div`
     
 
 const Center = styled.div`
-flex:1`;
+    flex:1;
+    padding:20px;
+    ${mobile({ display:'none'})};`;
 
 const Title = styled.h3`
     margin-bottom:20px
@@ -59,6 +68,7 @@ const List = styled.ul`
     display:flex;
     
     flex-wrap:wrap;
+
     `;
 const ListItem = styled.li`
    
@@ -73,8 +83,11 @@ const ListItem = styled.li`
 
 
 const Right = styled.div`
-flex:1;
-
+    flex:1;
+    padding:20px;
+   
+    ${mobile({ backgroundColor:'#f5f5f5'})};
+   
 `;
 
 
@@ -97,7 +110,7 @@ function Footer() {
         <Container>
             <Left>
                 <Logo>
-                    FaaizEcom
+                    FEcom
                 </Logo>
                 <Description>
                     Lorem ipsum dolor sit amet, consec tetur adipi sicing .
