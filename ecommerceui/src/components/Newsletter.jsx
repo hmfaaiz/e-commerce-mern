@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IoSend} from 'react-icons/io5';
-
+import { mobile } from '../responsive'
 
 
 const Container = styled.div`
@@ -20,14 +20,16 @@ const Title = styled.h1`
 
 const Description = styled.div`
     margin-bottom:20px;
-    color:#000000`;
+    color:#000000;
+    ${mobile({ textAlign:'center'})};`;
 
 const InputContainer = styled.div`
     background-color:white;
     height:35px;
     width:50%;
     justify-content:space-between;
-    display:flex`;
+    display:flex;
+    ${mobile({ width:'70%'})};`;
 
 const Input = styled.input`
     border:none;
