@@ -38,7 +38,11 @@ const Button = styled.button`
     background-color:rgb(5, 157, 119);
     cursor:pointer;
     border:none;
-    width:2.4vw`;
+    width:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center`;
+    
 
    
 
