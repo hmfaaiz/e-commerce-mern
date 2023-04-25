@@ -26,6 +26,6 @@ app.use('/api/product',productRoute)
 app.use('/api/cart',cartRoute)
 app.use('/api/order',orderRoute)
 // app.get("/api",()=>{
-//     console.log("Api is got 2")
+//     console.log("Api")
 
 // })
