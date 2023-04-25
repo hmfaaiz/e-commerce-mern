@@ -45,6 +45,7 @@ export const CategoriesData=[
     bg:"#F5F5F5 ",
    
     title:"Eid Collection",
+    cat:"kurta"
    
 },
     {
@@ -52,6 +53,7 @@ export const CategoriesData=[
     image:summerCat,
     bg:"#F5F5F5",
     title:"Summer Collection",
+    cat:"man"
   
 },
     {
@@ -59,6 +61,7 @@ export const CategoriesData=[
     image:winterCat,
     bg:"#F5F5F5 ", 
     title:"Winter Collection",
+    cat:"shirt"
   
 },
 ]

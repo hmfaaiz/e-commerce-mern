@@ -6,31 +6,43 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 
-import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 const App = () => {
-  const isLoggedIn=true;
-  return(
+  const user = true;
+  return (
     <Router>
       <Routes >
-        <Route exact path="/"  element={<Home  />}/>
+        <Route exact path="/" element={<Home />} />
       </Routes>
       <Routes >
-        <Route exact path="/products/:category"  element={<ProductList  />}/>
+        <Route exact path="/products/:category" element={<ProductList />} />
       </Routes>
       <Routes >
-        <Route exact path="/product/:id"  element={<Product  />}/>
+        <Route exact path="/product/:id" element={<Product />} />
       </Routes>
       <Routes >
-        <Route exact path="/cart"  element={<Cart  />}/>
+        <Route exact path="/cart" element={<Cart />} />
       </Routes>
-      <Routes >
+      {/* <Routes >
         <Route exact path="/login"/>
         {isLoggedIn ? <Navigate to="/" /> : <Login />}
         
+      </Routes> */}
+      <Routes>
+        {user ? (
+          <Route exact path="/login" element={<Navigate to="/" />} />
+        ) : (
+          <Route path="/login" element={<Login />} />
+        )}
       </Routes>
-      <Routes >
-        <Route exact path="register"  element={<Register  />}/>
+      <Routes>
+        {user ? (
+          <Route exact path="/register" element={<Navigate to="/" />} />
+        ) : (
+          <Route path="/register" element={<Register />} />
+        )}
       </Routes>
+
     </Router >
 
   );
