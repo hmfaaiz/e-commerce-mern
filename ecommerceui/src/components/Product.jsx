@@ -4,6 +4,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { FiHeart } from 'react-icons/fi';
 import { AiOutlineSearch } from 'react-icons/ai';
 
+
 const Info = styled.div`
     background-color:rgba(0,0,0,0.1);
     opacity:0;
@@ -82,6 +83,7 @@ const Image = styled.img`
 function Product(props) {
     return (
         <Container>
+         
             <Circle />
             <Image src={props.item.image} />
             <Info>
@@ -103,7 +105,7 @@ function Product(props) {
 
             </Info>
 
-
+   
         </Container>
 
     )

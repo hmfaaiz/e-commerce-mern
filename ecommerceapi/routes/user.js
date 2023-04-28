@@ -4,6 +4,7 @@ const CryptoJS = require('crypto-js');
 const JWT = require('jsonwebtoken');
 const { verifyTokenAutherization } = require("./verifyToken");
 const { verifyTokenAdmin } = require("./verifyToken");
+
 //Registration
 
 router.post('/userregisteration', async (req, res) => {
