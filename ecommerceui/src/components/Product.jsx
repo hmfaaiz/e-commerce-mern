@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FiShoppingCart } from 'react-icons/fi';
 import { FiHeart } from 'react-icons/fi';
 import { AiOutlineSearch } from 'react-icons/ai';
-
+import {Link}from "react-router-dom";
 
 const Info = styled.div`
     background-color:rgba(0,0,0,0.1);
@@ -83,11 +83,11 @@ const Image = styled.img`
 function Product(props) {
     return (
         <Container>
-         
+
             <Circle />
             <Image src={props.item.img} />
-          
-       
+
+
             <Info>
                 <Icon>
                     <FiShoppingCart />
@@ -99,15 +99,16 @@ function Product(props) {
                 </Icon>
 
                 <Icon>
-
-                    <AiOutlineSearch/>
+                    <Link to={`product/${props.item._id}`}>
+                        <AiOutlineSearch />
+                    </Link>
 
                 </Icon>
 
 
             </Info>
 
-   
+
         </Container>
 
     )
