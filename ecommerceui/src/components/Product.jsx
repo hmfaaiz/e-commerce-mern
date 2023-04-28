@@ -85,7 +85,9 @@ function Product(props) {
         <Container>
          
             <Circle />
-            <Image src={props.item.image} />
+            <Image src={props.item.img} />
+          
+       
             <Info>
                 <Icon>
                     <FiShoppingCart />

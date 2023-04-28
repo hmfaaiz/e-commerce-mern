@@ -16,14 +16,14 @@ const Container = styled.div``;
 const Wrapper = styled.div`
     display:flex;
     padding:50px;
-    ${mobile({padding:'5px',flexDirection:'column'})};
+    ${mobile({ padding: '5px', flexDirection: 'column' })};
     `;
 
 const ImageContainer = styled.div`
 
     flex:1;
     padding:0px 50px;
-    ${mobile({padding:'15px',flexDirection:'column'})};
+    ${mobile({ padding: '15px', flexDirection: 'column' })};
     `;
 
 
@@ -39,7 +39,7 @@ const Image = styled.img`
 const InfoContainer = styled.div`
     flex:1;
     padding:20px;
-    ${mobile({padding:'10px'})};
+    ${mobile({ padding: '10px' })};
     
     `;
 
@@ -60,7 +60,7 @@ const FilterContainer = styled.div`
     display:flex;
     width:50%;
     justify-content:space-between;
-    ${mobile({width:'100%'})};
+    ${mobile({ width: '100%' })};
     `;
 
 
@@ -106,13 +106,13 @@ const AddContainer = styled.div`
     
     width:50%;
     margin-top:40px;
-    ${mobile({width:'100%'})};
+    ${mobile({ width: '100%' })};
 
     `;
 const AmountContainer = styled.div`
     display:flex;
     cursor: pointer;
-    align-items:center`;
+    align-items:center;`;
 
 const Amount = styled.span`
     width:32px;
@@ -122,9 +122,7 @@ const Amount = styled.span`
     align-items:center;
     display:flex;
     justify-content:center;
-    margin:0px 8px;
-    
-`;
+    margin:0px 8px;`;
 
 const Button = styled.button`
     background-color:white;
@@ -136,8 +134,7 @@ const Button = styled.button`
     &:hover{
         background-color:rgb(2, 192, 144);
         color:white;
-    }
-    `;
+    }`;
 
 function Product() {
     return (

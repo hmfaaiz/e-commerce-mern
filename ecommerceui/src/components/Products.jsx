@@ -1,4 +1,4 @@
-import React,{ useEffect, useState }  from 'react'
+import React, { useEffect, useState } from 'react'
 import { ProductsData } from '../data'
 import styled from 'styled-components'
 import Product from './Product'
@@ -17,41 +17,79 @@ const Container = styled.div`
 
 `;
 
-function Products({cat,filter,sort}) {
-    const [products,setProducts]=useState([]);
-    const [filterproducts,setFilterProducts]=useState([]);
+function Products({ cat, filters, sort }) {
+    const [products, setProducts] = useState([]);
+    const [filterproducts, setFilterProducts] = useState([]);
 
-    useEffect(()=>{
-        
-        const getproduct=async()=>{
-            
-            try{
-                const res=await axios.get(cat? `http://localhost:9000/api/product/?category=${cat}`:
-                `http://localhost:9000/api/product/`);
+    useEffect(() => {
+
+        const getproduct = async () => {
+
+            try {
+                const res = await axios.get(cat ? `http://localhost:9000/api/product/?category=${cat}` :
+                    `http://localhost:9000/api/product/`);
                 setProducts(res.data);
-                console.log("products",products)
+                console.log("products", products, res.data)
 
             }
-            catch(err){
-                console.log("err",err)
+            catch (err) {
+                console.log("err", err)
             }
         };
         getproduct();
 
         // [cat] it tell react to run only when category change
-    },[cat])
+    }, [cat]);
 
+    useEffect(() => {
+
+        if (filters) {
+            console.log("check", cat, filters)
+
+            cat && setFilterProducts(
+
+                products.filter((item) =>
+                    Object.entries(filters).every(([key, value]) =>
+                        item[key].includes(value))));
+
+        }
+        else {
+            cat && setFilterProducts(
+                products)
+        }
+
+    }, [products, cat, filters]);
+
+    useEffect(() => {
+
+        if (sort === "newest") {
+            setFilterProducts((prev) =>
+
+                [...prev].sort((a, b) => a.createdAt - b.createdAt)
+            );
+        }
+        else if (sort === "asc") {
+            setFilterProducts((prev) =>
+
+                [...prev].sort((a, b) => a.price - b.price)
+            );
+        }
+        else {
+            setFilterProducts((prev) =>
+
+                [...prev].sort((a, b) => b.price - a.price)
+            );
+        }
+
+    }, [sort]);
 
     return (
         <Container>
-            
-
-            {ProductsData.map((item) => (
-                <Product item={item} />
 
 
-            ))}
-     
+            {cat ? filterproducts.map((item) =><Product item={item} />)
+             : products.slice(0,2).map((item) =><Product item={item} />)}
+
         </Container >
     )
 }

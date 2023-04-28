@@ -47,15 +47,15 @@ const Option = styled.option`
 function ProductList() {
     const location = useLocation();
     const cat = ("Location", location.pathname.split("/")[2]);
-    const [filter, setFilter] = useState();
+    const [filters, setFilters] = useState();
     const [sort, setSort] = useState("newest");
 
     const handleFilter = (e) => {
 
-        const value = e.target.value
+        const value = e.target.value.toLowerCase()
 
-        setFilter({
-            ...filter,
+        setFilters({
+            ...filters,
             [e.target.name]: value,
         });
 
@@ -66,11 +66,11 @@ function ProductList() {
         <Container>
             <Announcement />
             <Navbar />
-            <Title>Dresses</Title>
+            <Title>{cat}</Title>
             <FilterContainer>
                 <Filter><FilterText>Filter Products</FilterText>
                     <Select name="color" onChange={handleFilter}>
-                        <Option disabled selected>Color</Option>
+                        <Option disabled >Color</Option>
                         <Option>White</Option>
                         <Option>Red</Option>
                         <Option>Blue</Option>
@@ -78,8 +78,8 @@ function ProductList() {
                         <Option>Green</Option>
                         <Option>Black</Option>
                     </Select>
-                    <Select name="zize" onChange={handleFilter}>
-                        <Option disabled selected>Size</Option>
+                    <Select name="size" onChange={handleFilter}>
+                        <Option disabled >Size</Option>
                         <Option>S</Option>
                         <Option>M</Option>
                         <Option>L</Option>
@@ -102,7 +102,7 @@ function ProductList() {
                 </Filter>
 
             </FilterContainer>
-            <Products cat={cat} filter={filter} sort={sort}/>
+            <Products cat={cat} filters={filters} sort={sort}/>
             <Newsletter />
             <Footer />
 
