@@ -29,7 +29,7 @@ function Products({ cat, filters, sort }) {
                 const res = await axios.get(cat ? `http://localhost:9000/api/product/?category=${cat}` :
                     `http://localhost:9000/api/product/`);
                 setProducts(res.data);
-                console.log("products", products, res.data)
+             
 
             }
             catch (err) {
@@ -40,6 +40,7 @@ function Products({ cat, filters, sort }) {
 
         // [cat] it tell react to run only when category change
     }, [cat]);
+   
 
     useEffect(() => {
 

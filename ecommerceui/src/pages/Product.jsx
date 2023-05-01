@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Navbar from '../components/Navbar'
@@ -10,6 +10,11 @@ import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 
 import { mobile } from '../responsive'
+import { useLocation } from 'react-router-dom';
+import { publicRequest, userRequest } from '../requestMethod';
+
+import {useDispatch} from "react-redux";
+import {addProduct} from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -137,56 +142,119 @@ const Button = styled.button`
     }`;
 
 function Product() {
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [loading, setLoading] = useState(false);
+    const [product, setProduct] = useState([]);
+    const [quantity, setQuantity] = useState(1);
+    const [color, setColor] = useState();
+    const [size, setSize] = useState();
+    const dispatch=useDispatch();
+
+    const handleQuantity = (type) => {
+        if (type === "acc") {
+            setQuantity(quantity + 1)
+
+        }
+        else {
+            if (quantity > 1) {
+                setQuantity(quantity - 1)
+
+            }
+
+        }
+    }
+
+    const handleClick=()=>{
+      
+        dispatch(addProduct({product,quantity,price:product.price*quantity}));
+    
+        
+    }
+
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+
+                const res = await publicRequest.get("/product/find/" + id);
+
+                setProduct(res.data);
+                console.log("aa", res.data)
+                setLoading(true)
+
+            }
+
+            catch
+            (err) {
+                console.log("id", id)
+                console.log(err);
+            }
+        };
+        getProduct()
+    }, [id]);
+    console.log("d", product)
+
+
+
     return (
         <Container>
+
+
+
             <Announcement />
             <Navbar />
-            <Wrapper>
-                <ImageContainer>
-                    <Image src={p1} />
-                </ImageContainer>
 
-                <InfoContainer>
-                    <Title>Shirt</Title>
-                    <Description>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sed at, ab quidem corporis incidunt ipsum, labore blanditiis vero
-                        repudiandae reprehenderit exercitationem?
-                        Id nobis exercitationem eos deserunt aliquam fugit voluptatibus ipsam.</Description>
-                    <Price>$ 25</Price>
+            {loading? (
+                <Wrapper >
 
-                    <FilterContainer>
-                        <Filter>
-                            <FilterTitle>Color</FilterTitle>
-                            <FilterColor color="black" />
-                            <FilterColor color="gray" />
-                            <FilterColor color="blue" />
-                        </Filter>
+                    <ImageContainer>
+                        <Image src={product.product.img} />
+                    </ImageContainer>
 
-                        <Filter>
-                            <FilterTitle>Size</FilterTitle>
-                            <FilterSize>
-                                <FilterOption>S</FilterOption>
-                                <FilterOption>M</FilterOption>
-                                <FilterOption>L</FilterOption>
-                                <FilterOption>XL</FilterOption>
-                                <FilterOption>XS</FilterOption>
+                    <InfoContainer>
+                        <Title>{product.product.title}</Title>
+                        <Description>{product.product.desc} Lorem ipsum dolor ibus ipsam.</Description>
+                        <Price>$ {product.product.price}</Price>
 
-                            </FilterSize>
-                        </Filter>
-                    </FilterContainer>
+                        <FilterContainer>
+                            <Filter>
+                                <FilterTitle>Color</FilterTitle>
+                                {product.product.color?.map((c) => {
+                                    return <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+                                })}
 
-                    <AddContainer>
-                        <AmountContainer>
-                            <AiOutlineMinusCircle />
-                            <Amount> 10 </Amount>
-                            <AiOutlinePlusCircle />
 
-                        </AmountContainer>
-                        <Button>Add to Cart</Button>
-                    </AddContainer>
-                </InfoContainer>
+                            </Filter>
 
-            </Wrapper>
+                            <Filter>
+                                <FilterTitle>Size</FilterTitle>
+                                <FilterSize onChange={(e)=>setSize(e.target.value)}>
+                                    {product.product.size?.map((s) => {
+
+                                        return <FilterOption key={s}> {s} </FilterOption>
+                                    })}
+
+
+                                </FilterSize>
+                            </Filter>
+                        </FilterContainer>
+
+                        <AddContainer>
+                            <AmountContainer>
+                                <AiOutlineMinusCircle onClick={() => handleQuantity("desc")} />
+                                <Amount> {quantity} </Amount>
+                                <AiOutlinePlusCircle onClick={() => handleQuantity("acc")} />
+
+                            </AmountContainer>
+                            <Button onClick={()=>handleClick()}>Add to Cart</Button>
+                        </AddContainer>
+                    </InfoContainer>
+
+                </Wrapper>
+            ):
+            (<p>Loading</p>)
+            }
             <Newsletter />
             <Footer />
 

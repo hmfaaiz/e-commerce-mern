@@ -4,7 +4,9 @@ import { FaSearch } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 
 import { mobile } from '../responsive'
-
+import { useSelector } from 'react-redux';
+// import { Badge } from 'react-bootstrap';
+// import { Badge } from '@material-ui/core';
 
 
 const Container = styled.div`
@@ -21,7 +23,7 @@ const Wrapper = styled.div`
     display:flex;
     justify-content:space-between;
   
-    ${mobile({padding: '3px 0px' })};
+    ${mobile({ padding: '3px 0px' })};
     `;
 
 
@@ -49,7 +51,7 @@ const Center = styled.div`
     flex:1;
     
     text-align:center;`
-  
+
 
 const SpanContainer = styled.span`
   ${mobile({ display: `none` })};
@@ -68,13 +70,13 @@ const SearchContainer = styled.div`
   background-color:rgb(0, 142, 106);;
   cursor:pointer;
   
-  ${mobile({height:'13px' ,marginLeft: `0px` })};
+  ${mobile({ height: '13px', marginLeft: `0px` })};
   `;
 
 const Input = styled.input`
   border:none;
   margin-Right: 7px;
-  ${mobile({height:'15px', width: `90px` })}
+  ${mobile({ height: '15px', width: `90px` })}
 
  `;
 
@@ -95,6 +97,10 @@ const MenuItem = styled.div`
 
 
 const Navbar = () => {
+
+  const quantity = useSelector(state => state.cart.quantity)
+  const cart = useSelector(state => state.cart)
+  console.log("cart", cart)
   return (
 
     <Container>
@@ -116,7 +122,31 @@ const Navbar = () => {
           <MenuItem>Register</MenuItem>
           <MenuItem>Sign in</MenuItem>
 
-          <MenuItem><FiShoppingCart size={25} /></MenuItem>
+          <MenuItem>
+
+
+            <FiShoppingCart size={25} />
+            <div style={{
+              fontSize:'5px',
+              position: 'absolute',
+              top: '31px',
+              right: '10px',
+              backgroundColor: 'red',
+              color: 'white',
+              borderRadius: '50%',
+              padding: '2px',
+              width: '14px',
+              height: '14px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}>
+              {quantity}
+            </div>
+
+
+
+          </MenuItem>
 
         </Right>
 
