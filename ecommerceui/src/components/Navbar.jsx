@@ -7,7 +7,7 @@ import { mobile } from '../responsive'
 import { useSelector } from 'react-redux';
 // import { Badge } from 'react-bootstrap';
 // import { Badge } from '@material-ui/core';
-
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     height:50px;
@@ -101,7 +101,7 @@ const Navbar = () => {
   const quantity = useSelector(state => state.cart.quantity)
   const cart = useSelector(state => state.cart)
   const price = useSelector(state => state.cart.total)
-  console.log("cart",cart,quantity,price)
+  console.log("cart", cart, quantity, price)
   return (
 
     <Container>
@@ -122,32 +122,34 @@ const Navbar = () => {
         <Right>
           <MenuItem>Register</MenuItem>
           <MenuItem>Sign in</MenuItem>
+          <Link to="/cart">
 
-          <MenuItem>
-
-
-            <FiShoppingCart size={25} />
-            <div style={{
-              fontSize:'5px',
-              position: 'absolute',
-              top: '31px',
-              right: '10px',
-              backgroundColor: 'red',
-              color: 'white',
-              borderRadius: '50%',
-              padding: '2px',
-              width: '14px',
-              height: '14px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-              {quantity}
-            </div>
+            <MenuItem>
 
 
+              <FiShoppingCart size={25} />
+              <div style={{
+                fontSize: '5px',
+                position: 'absolute',
+                top: '31px',
+                right: '10px',
+                backgroundColor: 'red',
+                color: 'white',
+                borderRadius: '50%',
+                padding: '2px',
+                width: '14px',
+                height: '14px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+                {quantity}
+              </div>
 
-          </MenuItem>
+
+
+            </MenuItem>
+          </Link>
 
         </Right>
 
