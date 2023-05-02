@@ -167,8 +167,8 @@ function Product() {
 
     const handleClick=()=>{
       
-        dispatch(addProduct({product,quantity,price:product.price*quantity}));
-    
+        dispatch(addProduct({...product,quantity,color,size,price:product.price*quantity}));
+        console.log("data:")
         
     }
 
@@ -179,21 +179,20 @@ function Product() {
 
                 const res = await publicRequest.get("/product/find/" + id);
 
-                setProduct(res.data);
-                console.log("aa", res.data)
+                setProduct(res.data.product);
                 setLoading(true)
 
             }
 
             catch
             (err) {
-                console.log("id", id)
+             
                 console.log(err);
             }
         };
         getProduct()
     }, [id]);
-    console.log("d", product)
+
 
 
 
@@ -209,18 +208,18 @@ function Product() {
                 <Wrapper >
 
                     <ImageContainer>
-                        <Image src={product.product.img} />
+                        <Image src={product.img} />
                     </ImageContainer>
 
                     <InfoContainer>
-                        <Title>{product.product.title}</Title>
-                        <Description>{product.product.desc} Lorem ipsum dolor ibus ipsam.</Description>
-                        <Price>$ {product.product.price}</Price>
+                        <Title>{product.title}</Title>
+                        <Description>{product.desc} Lorem ipsum dolor ibus ipsam.</Description>
+                        <Price>$ {product.price}</Price>
 
                         <FilterContainer>
                             <Filter>
                                 <FilterTitle>Color</FilterTitle>
-                                {product.product.color?.map((c) => {
+                                {product.color?.map((c) => {
                                     return <FilterColor color={c} key={c} onClick={() => setColor(c)} />
                                 })}
 
@@ -230,7 +229,7 @@ function Product() {
                             <Filter>
                                 <FilterTitle>Size</FilterTitle>
                                 <FilterSize onChange={(e)=>setSize(e.target.value)}>
-                                    {product.product.size?.map((s) => {
+                                    {product.size?.map((s) => {
 
                                         return <FilterOption key={s}> {s} </FilterOption>
                                     })}

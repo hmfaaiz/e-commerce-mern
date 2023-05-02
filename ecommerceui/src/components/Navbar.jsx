@@ -100,7 +100,8 @@ const Navbar = () => {
 
   const quantity = useSelector(state => state.cart.quantity)
   const cart = useSelector(state => state.cart)
-  console.log("cart", cart)
+  const price = useSelector(state => state.cart.total)
+  console.log("cart",cart,quantity,price)
   return (
 
     <Container>
