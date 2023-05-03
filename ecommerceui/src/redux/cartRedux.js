@@ -4,7 +4,7 @@ const cartSlice = createSlice({
     name: "cart",
     initialState: {
         products: [],
-        quantity: 0,
+        quantity1: 0,
         total: 0,
     },
     reducers: {
@@ -12,10 +12,13 @@ const cartSlice = createSlice({
         //get product from add to cart btn
         addProduct: (state, action) => {
             //when btn click qty increase by 1
-            state.quantity += 1;
+            state.quantity1 += 1;
             //{...product,quantity,color,size,price:product.price*quantity}
-            state.products.push(action.payload.product);
+            state.products.push(action.payload);
             state.total += action.payload.price;
+            console.log("products info",action.payload)
+          
+          
           
 
         }

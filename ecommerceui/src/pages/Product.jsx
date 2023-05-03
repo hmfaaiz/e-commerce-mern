@@ -13,8 +13,8 @@ import { mobile } from '../responsive'
 import { useLocation } from 'react-router-dom';
 import { publicRequest, userRequest } from '../requestMethod';
 
-import {useDispatch} from "react-redux";
-import {addProduct} from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -96,6 +96,7 @@ const FilterColor = styled.div`
 const FilterSize = styled.select`
     margin-left:10px;
     padding:5px;
+
     
     `;
 
@@ -149,7 +150,7 @@ function Product() {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState();
     const [size, setSize] = useState();
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
 
     const handleQuantity = (type) => {
         if (type === "acc") {
@@ -165,12 +166,14 @@ function Product() {
         }
     }
 
-    const handleClick=()=>{
-      
-        dispatch(addProduct({...product,quantity,color,size,price:product.price*quantity}));
-        console.log("data:")
-        
+    const handleClick = () => {
+
+
+
+        dispatch(addProduct({ ...product, quantity, color, size, price: product.price * quantity }));
+
     }
+   
 
 
     useEffect(() => {
@@ -182,11 +185,12 @@ function Product() {
                 setProduct(res.data.product);
                 setLoading(true)
 
+
             }
 
             catch
             (err) {
-             
+
                 console.log(err);
             }
         };
@@ -204,7 +208,7 @@ function Product() {
             <Announcement />
             <Navbar />
 
-            {loading? (
+            {loading ? (
                 <Wrapper >
 
                     <ImageContainer>
@@ -228,14 +232,18 @@ function Product() {
 
                             <Filter>
                                 <FilterTitle>Size</FilterTitle>
-                                <FilterSize onChange={(e)=>setSize(e.target.value)}>
+                                <FilterSize onClick={(e)=>setSize(e.target.value)}>
+                              
                                     {product.size?.map((s) => {
+                                    
 
-                                        return <FilterOption key={s}> {s} </FilterOption>
+                                        return <FilterOption key={s}  value={s}>{s} {setSize} </FilterOption>
                                     })}
 
 
                                 </FilterSize>
+
+                            
                             </Filter>
                         </FilterContainer>
 
@@ -246,13 +254,13 @@ function Product() {
                                 <AiOutlinePlusCircle onClick={() => handleQuantity("acc")} />
 
                             </AmountContainer>
-                            <Button onClick={()=>handleClick()}>Add to Cart</Button>
+                            <Button onClick={() => handleClick()}>Add to Cart</Button>
                         </AddContainer>
                     </InfoContainer>
 
                 </Wrapper>
-            ):
-            (<p>Loading</p>)
+            ) :
+                (<p>Loading</p>)
             }
             <Newsletter />
             <Footer />

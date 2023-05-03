@@ -98,10 +98,11 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
 
-  const quantity = useSelector(state => state.cart.quantity)
+  const quantity1 = useSelector(state => state.cart.quantity1)
   const cart = useSelector(state => state.cart)
   const price = useSelector(state => state.cart.total)
-  console.log("cart", cart, quantity, price)
+  console.log("car",cart)
+
   return (
 
     <Container>
@@ -143,7 +144,7 @@ const Navbar = () => {
                 justifyContent: 'center',
                 alignItems: 'center'
               }}>
-                {quantity}
+                {quantity1}
               </div>
 
 

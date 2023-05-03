@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import p2 from '../images/p2.png';
 import p5 from '../images/p5.png';
-
+import { useSelector } from 'react-redux';
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { AiOutlineMinusCircle } from 'react-icons/ai'
 import { mobile } from '../responsive'
@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
     padding:20px;
-    ${mobile({padding:'5px'})};
+    ${mobile({ padding: '5px' })};
    
     `;
 
@@ -33,9 +33,7 @@ const Top = styled.div`
     align-items:center;
     justify-content:space-between;
     display:flex;
-    padding:20px
-   
-    `;
+    padding:20px;`;
 const TopBotton = styled.button`
     padding:10px;
 
@@ -48,12 +46,10 @@ const TopBotton = styled.button`
         
         color:white;
     };
-    ${mobile({flexDirection:'column'})};
-
-    `;
-
+    ${mobile({ flexDirection: 'column' })}`;
+    
 const TopTexts = styled.div`
-    ${mobile({display:'none'})}; `;
+    ${mobile({ display: 'none' })}; `;
 
 const TopText = styled.span`
     text-decoration:underline;
@@ -66,7 +62,7 @@ const Bottom = styled.div`
     display:flex;
     justify-content:space-between;
     padding:10px;
-    ${mobile({flexDirection:'column'})};
+    ${mobile({ flexDirection: 'column' })};
    
     `;
 
@@ -82,7 +78,7 @@ const Info = styled.div`
 const Product = styled.div`
     display:flex;
     justify-content:space-between;
-    ${mobile({flexDirection:'column'})};
+    ${mobile({ flexDirection: 'column' })};
 
 
     `;
@@ -153,7 +149,7 @@ const AmountContainer = styled.div`
     align-items:center;
     margin-bottom:10px;
     `;
- 
+
 
 const Amount = styled.span`
     width:32px;
@@ -164,7 +160,7 @@ const Amount = styled.span`
     display:flex;
     justify-content:center;
     margin:0px 13px;
-    ${mobile({margin:'0px 20px'})};
+    ${mobile({ margin: '0px 20px' })};
     
 `;
 
@@ -189,21 +185,21 @@ const Summary = styled.div`
     `;
 
 
-const SummaryTitle=styled.h2`
+const SummaryTitle = styled.h2`
     font-weight:400;
     `;
 
-const SummaryItem=styled.div`
+const SummaryItem = styled.div`
     margin:20px 0px;
     display:flex;
     justify-content:space-between;
     `;
 
-const SummaryItemText=styled.span`
+const SummaryItemText = styled.span`
     `;
-const SummaryItemPrice=styled.span`
+const SummaryItemPrice = styled.span`
     `;
-const Button=styled.button`
+const Button = styled.button`
     width:100%;
     padding:10px;
     margin-top:40px;
@@ -220,6 +216,16 @@ const Button=styled.button`
 
 
 function Cart() {
+   
+    const cart = useSelector(state => state.cart)
+    const subtotal = useSelector(state => state.cart.total)
+
+  
+  
+  
+  
+  
+    
     return (
         <Container>
             <Announcement />
@@ -231,7 +237,7 @@ function Cart() {
                 <Top>
                     <TopBotton>Continue Shopping</TopBotton>
                     <TopTexts>
-                        <TopText>Shopping Bag(10)</TopText>
+                        <TopText>Shopping Bag({})</TopText>
                         <TopText>Your Wishlist(2)</TopText>
                     </TopTexts>
                     <TopBotton type="filled">Checkout Now</TopBotton>
@@ -239,70 +245,47 @@ function Cart() {
                 </Top>
                 <Bottom>
                     <Info>
-                        <Product>
-                            <ProductDetails>
-                                <ProductImage src={p2} />
+                        {cart.products.map((product)=>(
+                              <Product>
+                              <ProductDetails>
+                                  <ProductImage src={product.img} />
+  
+                                  <Detail>
+                                      <ProductId><b>Id</b>{product._id}</ProductId>
+                                      <ProductName><b>Product</b> {product.Title}</ProductName>
+  
+  
+                                      <ProductColor Color color={product.color} />
+  
+                                      <ProductSize ><b>Size</b> {product.size}</ProductSize>
+  
+  
+                                  </Detail>
+                              </ProductDetails>
+                              <ProductPriceDetail>
+                                  <AddContainer>
+                                      <AmountContainer>
+                                          <AiOutlineMinusCircle />
+                                          <Amount>{product.quantity} </Amount>
+                                          <AiOutlinePlusCircle />
+  
+                                      </AmountContainer>
+                                      <ProductPrice>$ {product.price}</ProductPrice>
+                                  </AddContainer>
+                              </ProductPriceDetail>
+                          </Product>
 
-                                <Detail>
-                                    <ProductId><b>Id</b> 1</ProductId>
-                                    <ProductName><b>Product</b> T shirt</ProductName>
-
-
-                                    <ProductColor Color color="blue" />
-
-                                    <ProductSize ><b>Size</b> Large</ProductSize>
-
-
-                                </Detail>
-                            </ProductDetails>
-                            <ProductPriceDetail>
-                                <AddContainer>
-                                    <AmountContainer>
-                                        <AiOutlineMinusCircle />
-                                        <Amount> 10 </Amount>
-                                        <AiOutlinePlusCircle />
-
-                                    </AmountContainer>
-                                    <ProductPrice>$ 25 </ProductPrice>
-                                </AddContainer>
-                            </ProductPriceDetail>
-                        </Product>
+                        ))} 
+                      
                         <Hr />
-                        <Product>
-                            <ProductDetails>
-                                <ProductImage src={p5} />
-
-                                <Detail>
-                                    <ProductId><b>Id</b> 1</ProductId>
-                                    <ProductName><b>Product</b> T shirt</ProductName>
-
-
-                                    <ProductColor Color color="#f8f8f8" />
-
-                                    <ProductSize ><b>Size</b> Large</ProductSize>
-
-
-                                </Detail>
-                            </ProductDetails>
-                            <ProductPriceDetail>
-                                <AddContainer>
-                                    <AmountContainer>
-                                        <AiOutlineMinusCircle />
-                                        <Amount> 10 </Amount>
-                                        <AiOutlinePlusCircle />
-
-                                    </AmountContainer>
-                                    <ProductPrice>$ 25 </ProductPrice>
-                                </AddContainer>
-                            </ProductPriceDetail>
-                        </Product>
+                       
 
                     </Info>
                     <Summary>
                         <SummaryTitle>Order Summary</SummaryTitle>
                         <SummaryItem>
                             <SummaryItemText>Sub Total</SummaryItemText>
-                            <SummaryItemPrice>$ 20</SummaryItemPrice>
+                            <SummaryItemPrice>$ {subtotal}</SummaryItemPrice>
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText>Estimate Shipping</SummaryItemText>
@@ -314,7 +297,7 @@ function Cart() {
                         </SummaryItem>
                         <SummaryItem>
                             <SummaryItemText type="total">Total</SummaryItemText>
-                            <SummaryItemPrice>$ 30</SummaryItemPrice>
+                            <SummaryItemPrice>$ {subtotal +10-1.27}</SummaryItemPrice>
                         </SummaryItem>
                         <Button type="filled">Checkout Now</Button>
 
@@ -327,4 +310,4 @@ function Cart() {
     )
 }
 
-export default Cart
+export default Cart;
