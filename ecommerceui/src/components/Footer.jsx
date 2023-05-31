@@ -162,7 +162,7 @@ function Footer() {
                 </ContactContainer>
                 <ContactContainer>
                     <MdEmail style={{ marginRight: "15px" }} />
-                    faaizazeem@gmail.com
+                    faaiz@gmail.com
                 </ContactContainer>
 
                 <Payment src={payment} />
